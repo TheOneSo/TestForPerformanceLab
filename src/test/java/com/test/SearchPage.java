@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+
 public class SearchPage {
 
     private final WebDriver Driver;
@@ -31,8 +33,18 @@ public class SearchPage {
     }
 
     public SearchPage clickSite(){
+        switchToLast();
         Element = Driver.findElement(Site);
         Element.click();
+        switchToLast();
         return this;
+    }
+
+    private void switchToLast(){
+        ArrayList tab = new ArrayList(Driver.getWindowHandles());
+        if(tab.size() > 0)
+            Driver.switchTo().window((String) tab.get(tab.size() - 1));
+        else
+            return;
     }
 }

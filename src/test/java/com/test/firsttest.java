@@ -57,22 +57,14 @@ public class firsttest {
         SearchPage page = new SearchPage(driver, By.cssSelector(FieldForSearch), By.cssSelector(Site));
         page.typeInput("performance lab");
         page.submitButton();
-        setting.switchToLast(driver);
         page.clickSite();
 
-        //Переключаемся на новую вкладку
-        setting.switchToLast(driver);
-
-        //Попадаем на домашнюю страницу Перфоманс Лаб
-        HomePage home = new HomePage(driver);
-        home.clickUpMenu();
-        home.clickTesting();
-
-        //Переходим в раздел тестирования
-        new TestingPage(driver).clickAutoTesting();
-
-        //Получаем текст страницы
-        String Text = new AutoTestingPage(driver).elementText();
+        //Получаем нужные данные с сайта Перфоманс Лаб
+        PerformanceLabPage performance = new PerformanceLabPage(driver);
+        performance.getUpMenu();
+        performance.getClickTesting();
+        performance.getClickAutoTesting();
+        String Text = performance.getElementText();
 
         //Сохраняем файл
         setting.saveFile("/users/oneso/", Search, Text);
