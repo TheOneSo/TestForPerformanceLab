@@ -14,7 +14,6 @@ import java.util.*;
 @RunWith(value = Parameterized.class)
 public class firsttest {
 
-    private static WebDriver driver;
     private static Setting setting;
     private String Search;
     private String FieldForSearch;
@@ -40,27 +39,27 @@ public class firsttest {
     public void setUp(){
         //Настраиваем Driver
         setting = new Setting();
-        driver = setting.dirverSetting();
-        setting.setTimeWait(driver,10);
-        setting.goSite(driver, "https://" + Search + ".ru");
+        setting.dirverSetting();
+        setting.setTimeWait(10);
+        setting.goSite("https://" + Search + ".ru");
     }
 
     @After
     public void closeDriver(){
         //Закрываем браузер
-        setting.closeTabOrDriver(driver);
+        setting.closeTabOrDriver();
     }
 
     @Test
     public void test(){
         //Ищем Перфоманс Лаб в 3-х поисковиках и переходим на него
-        SearchPage page = new SearchPage(driver, By.cssSelector(FieldForSearch), By.cssSelector(Site));
+        SearchPage page = new SearchPage(setting.getDriver(), By.cssSelector(FieldForSearch), By.cssSelector(Site));
         page.typeInput("performance lab");
         page.submitButton();
         page.clickSite();
 
         //Получаем нужные данные с сайта Перфоманс Лаб
-        PerformanceLabPage performance = new PerformanceLabPage(driver);
+        PerformanceLabPage performance = new PerformanceLabPage(setting.getDriver());
         performance.getUpMenu();
         performance.getClickTesting();
         performance.getClickAutoTesting();

@@ -13,7 +13,6 @@ public class SearchPage {
     private WebElement Element;
     private By Input;
     private By Site;
-    private String Rambler = "performance lab — Рамблер/поиск";
 
     public SearchPage(WebDriver driver, By input, By site){
         this.Driver = driver;
