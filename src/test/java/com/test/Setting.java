@@ -5,32 +5,36 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class Setting {
+public final class Setting {
 
-    private WebDriver driver;
+    private static WebDriver driver;
 
-    public void dirverSetting(){
+    private static ChromeOptions driverSetting(){
         System.setProperty("webdriver.chrome.driver", "/users/oneso/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--kiosk");
-        driver = new ChromeDriver(options);
+        return options;
     }
 
-    public void setTimeWait(long secondTime){
+    public static void setTimeWait(long secondTime){
         driver.manage().timeouts().implicitlyWait(secondTime, TimeUnit.SECONDS);
     }
 
-    public void goSite(String site){
+    public static void goSite(String site){
         driver.get(site);
     }
 
-    public void closeTabOrDriver(){
-        driver.quit();
+    public static void closeTabOrDriver(String tabordriver){
+        if(tabordriver.toLowerCase().equals("quit"))
+            driver.quit();
+        else
+            driver.close();
     }
 
-    public void saveFile(String pathToFile, String fileName, String Text){
+    public static void saveFile(String pathToFile, String fileName, String Text){
         try {
             FileWriter file = new FileWriter(pathToFile + fileName + ".txt", false);
             file.write(Text);
@@ -40,5 +44,17 @@ public class Setting {
         }
     }
 
-    public WebDriver getDriver() { return driver; }
+    public static WebDriver getDriver(){
+        if(driver != null)
+            return driver;
+        driver = new ChromeDriver(driverSetting());
+        return driver;
+    }
+
+    public static ArrayList switchTabToLast(){
+        ArrayList tab = new ArrayList(Setting.getDriver().getWindowHandles());
+        if(tab.size() > 0)
+            Setting.getDriver().switchTo().window((String) tab.get(tab.size() - 1));
+        return  tab;
+    }
 }
