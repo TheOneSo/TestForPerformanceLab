@@ -5,16 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SearchGoogle {
+public class SearchYandex {
 
-    public SearchGoogle(){
+    public SearchYandex(){
         PageFactory.initElements(Setting.getDriver(), this);
     }
 
-    @FindBy(css = "input.gsfi")
+    @FindBy(css = "input#text")
     private WebElement Input;
 
-    @FindBy(css = "div.g h3.r a")
+    @FindBy(css = "li[class*=\"serp-item\"] a[accesskey*=\"1\"]")
     private WebElement PathToPerformanceSite;
 
     public void search(String text){

@@ -3,6 +3,7 @@ package com.test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -27,11 +28,8 @@ public final class Setting {
         driver.get(site);
     }
 
-    public static void closeTabOrDriver(String tabordriver){
-        if(tabordriver.toLowerCase().equals("quit"))
-            driver.quit();
-        else
-            driver.close();
+    public static void closeDriver(){
+        driver.quit();
     }
 
     public static void saveFile(String pathToFile, String fileName, String Text){
@@ -51,10 +49,19 @@ public final class Setting {
         return driver;
     }
 
-    public static ArrayList switchTabToLast(){
+    public static void switchTabToLast(){
         ArrayList tab = new ArrayList(Setting.getDriver().getWindowHandles());
         if(tab.size() > 0)
             Setting.getDriver().switchTo().window((String) tab.get(tab.size() - 1));
-        return  tab;
+    }
+
+    public static void closeAllTabs(){
+        ArrayList tabs = new ArrayList(Setting.getDriver().getWindowHandles());
+        int count = tabs.size() - 1;
+        while (count > 0){
+            Setting.getDriver().close();
+            count--;
+            Setting.getDriver().switchTo().window((String) tabs.get(count));
+        }
     }
 }

@@ -5,17 +5,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SearchGoogle {
+public class SearchRambler {
 
-    public SearchGoogle(){
+    public SearchRambler(){
         PageFactory.initElements(Setting.getDriver(), this);
     }
 
-    @FindBy(css = "input.gsfi")
+    @FindBy(css = "input[type*=\"text\"]")
     private WebElement Input;
 
-    @FindBy(css = "div.g h3.r a")
-    private WebElement PathToPerformanceSite;
+    @FindBy(css = "div.b-serp-item a[onmouseup*=\"title_1'\"]")
+    private WebElement PathToPerformanceLab;
 
     public void search(String text){
         Input.sendKeys(text);
@@ -23,7 +23,8 @@ public class SearchGoogle {
     }
 
     public void click(){
-        PathToPerformanceSite.click();
+        Setting.switchTabToLast();
+        PathToPerformanceLab.click();
         Setting.switchTabToLast();
     }
 }
