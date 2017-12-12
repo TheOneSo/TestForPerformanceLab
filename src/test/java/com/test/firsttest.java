@@ -1,21 +1,21 @@
 package com.test;
 
-import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.Before;
 
 public class firsttest {
 
-    @Before
-    public void setUp(){
+    @BeforeClass
+    public static void setUp(){
         //Настраиваем Driver
         Setting.getDriver();
         Setting.setTimeWait(10);
     }
 
-    @After
-    public void closeDriver(){
-        //Закрываем браузер
+    @AfterClass
+    public static void closeDriver(){
+        //Гасим драйвер
         Setting.closeDriver();
     }
 

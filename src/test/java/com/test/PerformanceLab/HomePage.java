@@ -1,12 +1,13 @@
 package com.test.PerformanceLab;
 
+import com.test.BaseClass;
 import com.test.Setting;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
+public class HomePage extends BaseClass {
 
     @FindBy(css = "ul#nav li#menu-item-317 a")
     private WebElement UpMenu;
@@ -22,13 +23,12 @@ public class HomePage {
             throw new IllegalStateException("Это не страница Performance Lab");
     }
 
-    public HomePage clickUpMenu(){
+    public void expandMenu(){
         new Actions(Setting.getDriver()).moveToElement(UpMenu).build().perform();
-        return this;
     }
 
-    public HomePage clickTesting(){
+    @Override
+    public void click(){
         Testing.click();
-        return this;
     }
 }

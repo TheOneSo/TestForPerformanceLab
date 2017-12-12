@@ -14,19 +14,19 @@ public class PageObjectWithPageFactory {
     }
 
     public void getUpMenu(){
-        new HomePage().clickUpMenu();
+        new HomePage().expandMenu();
     }
 
     public void getClickTesting() {
-        new HomePage().clickTesting();
+        new HomePage().click();
     }
 
     public void getClickAutoTesting(){
-        new TestingPage().clickAutoTesting();
+        new TestingPage().click();
     }
 
     public String getElementText(){
-        return new AutoTestingPage().elementText();
+        return new AutoTestingPage().getText();
     }
 
     public void searchGoogle(String text){ new SearchGoogle().search(text);}
