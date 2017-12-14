@@ -1,44 +1,45 @@
 package com.test;
 
-import com.test.PerformanceLab.AutoTestingPage;
-import com.test.PerformanceLab.HomePage;
-import com.test.PerformanceLab.TestingPage;
-import com.test.Search.SearchGoogle;
-import com.test.Search.SearchRambler;
-import com.test.Search.SearchYandex;
+import com.data.Setting.SettingDriver;
+import com.data.PerformanceLabPages.PFLBAutoTestingPage;
+import com.data.PerformanceLabPages.PFLBHomePage;
+import com.data.PerformanceLabPages.PFLBTestingPage;
+import com.data.SearchPages.GooglePage;
+import com.data.SearchPages.RamblerPage;
+import com.data.SearchPages.YandexPage;
 
 public class PageObjectWithPageFactory {
 
     public PageObjectWithPageFactory(String url){
-        Setting.goSite(url);
+        SettingDriver.openUrl(url);
     }
 
     public void getUpMenu(){
-        new HomePage().expandMenu();
+        new PFLBHomePage().moveToServicesInDropdownMenu();
     }
 
     public void getClickTesting() {
-        new HomePage().click();
+        new PFLBHomePage().clickTesting();
     }
 
     public void getClickAutoTesting(){
-        new TestingPage().click();
+        new PFLBTestingPage().clickAT();
     }
 
     public String getElementText(){
-        return new AutoTestingPage().getText();
+        return new PFLBAutoTestingPage().getText();
     }
 
-    public void searchGoogle(String text){ new SearchGoogle().search(text);}
+    public void searchGoogle(String text){ new GooglePage().search(text);}
 
-    public void clickGoogle(){ new SearchGoogle().click();}
+    public void clickGoogle(){ new GooglePage().clickFirstResult();}
 
-    public void searchYandex(String text) {new SearchYandex().search(text);}
+    public void searchYandex(String text) {new YandexPage().search(text);}
 
-    public void clickYandex(){ new SearchYandex().click();}
+    public void clickYandex(){ new YandexPage().clickFirstResult();}
 
-    public void searchRambler(String text) {new SearchRambler().search(text);}
+    public void searchRambler(String text) {new RamblerPage().search(text);}
 
-    public void clickRambler(){ new SearchRambler().click();}
+    public void clickRambler(){ new RamblerPage().clickFirstResult();}
 
 }
