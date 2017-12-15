@@ -3,6 +3,7 @@ package com.data.Setting;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 public final class SettingDriver {
 
     private static WebDriver driver;
+    private WebDriverWait Wait;
 
     /**
      * Create or return ChromeDriver
@@ -30,7 +32,7 @@ public final class SettingDriver {
     }
 
     /**
-     * Set global time in second
+     * Set global time wait in second
      */
     public static void setGlobalTimeWait(long secondTime){
         getChromeDriver().manage().timeouts().implicitlyWait(secondTime, TimeUnit.SECONDS);
@@ -48,6 +50,13 @@ public final class SettingDriver {
      */
     public static void closeDriver(){
         getChromeDriver().quit();
+    }
+
+    /**
+     * Set Time wait in second
+     */
+    public void setTimeWait(long secondTime){
+        Wait = new WebDriverWait(getChromeDriver(), secondTime);
     }
 
     /**

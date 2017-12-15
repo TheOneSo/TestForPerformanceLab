@@ -35,4 +35,12 @@ public class GooglePage extends BasePage {
         SettingDriver.switchTabToLast();
         return new PFLBHomePage();
     }
+
+    public boolean isDisplayedInput(){
+        return Input.isDisplayed();
+    }
+
+    public boolean isDisplayedPathToFirstResult(){
+        return PathToFirstResult.isDisplayed();
+    }
 }

@@ -36,4 +36,12 @@ public class PFLBHomePage extends BasePage {
         Testing.click();
         return new PFLBTestingPage();
     }
+
+    public boolean isDisplayedServices(){
+        return Services.isDisplayed();
+    }
+
+    public boolean isDisplayedTesting(){
+        return Testing.isDisplayed();
+    }
 }

@@ -22,4 +22,8 @@ public class PFLBTestingPage extends BasePage {
         AutoTesting.click();
         return new PFLBAutoTestingPage();
     }
+
+    public boolean isDisplayedAutoTesting(){
+        return AutoTesting.isDisplayed();
+    }
 }
