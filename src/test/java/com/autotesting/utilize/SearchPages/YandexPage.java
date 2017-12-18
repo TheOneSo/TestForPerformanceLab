@@ -7,7 +7,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class YandexPage extends BasePage {
+public class YandexPage extends SearchPage {
 
     public YandexPage(){
         super();
@@ -22,9 +22,11 @@ public class YandexPage extends BasePage {
     /**
      * Search value in Yandex
      */
-    public void search(String value){
+    @Override
+    public YandexPage search(String value){
         Input.sendKeys(value);
         Input.submit();
+        return this;
     }
 
     /**

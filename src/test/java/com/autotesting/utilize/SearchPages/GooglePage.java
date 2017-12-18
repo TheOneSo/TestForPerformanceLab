@@ -1,13 +1,12 @@
 package com.autotesting.utilize.SearchPages;
 
-import com.autotesting.utilize.BasePage;
 import com.autotesting.utilize.PerformanceLabPages.PFLBHomePage;
 import com.autotesting.utilize.Setting.SettingDriver;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GooglePage extends BasePage {
+public class GooglePage extends SearchPage {
 
     public GooglePage(){
         super();
@@ -22,6 +21,7 @@ public class GooglePage extends BasePage {
     /**
      * Search value in Google
      */
+    @Override
     public GooglePage search(String value){
         Input.sendKeys(value);
         Input.submit();

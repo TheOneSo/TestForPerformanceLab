@@ -1,13 +1,12 @@
 package com.autotesting.utilize.SearchPages;
 
-import com.autotesting.utilize.BasePage;
 import com.autotesting.utilize.PerformanceLabPages.PFLBHomePage;
 import com.autotesting.utilize.Setting.SettingDriver;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class RamblerPage extends BasePage {
+public class RamblerPage extends SearchPage {
 
     public RamblerPage(){
         super();
@@ -23,6 +22,7 @@ public class RamblerPage extends BasePage {
     /**
      * Search value in Rambler
      */
+    @Override
     public RamblerPage search(String value){
         Input.sendKeys(value + "\n");
         //Input.submit();
