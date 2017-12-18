@@ -14,7 +14,7 @@ public class PFLBHomePage extends BasePage {
     @FindBy(css = "li#menu-item-317 a")
     private WebElement Services;
 
-    @FindBy(css = "div.one_item_menu a[href*=\"ru/software-testing\"]")
+    @FindBy(css = "div.container > li.menu-item-957 > a")
     private WebElement Testing;
 
     public String NamePage = "Перфоманс Лаб - Услуги по тестированию программного обеспечения";

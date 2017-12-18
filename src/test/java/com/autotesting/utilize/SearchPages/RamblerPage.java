@@ -15,7 +15,7 @@ public class RamblerPage extends SearchPage {
     @FindBy(css = "input.c07")
     private WebElement Input;
 
-    @FindBy(css = "div.b-serp-item a[onmouseup*=\"title_1'\"]")
+    @FindBy(css = "div.b-serp-list a")
     private WebElement PathToFirstResult;
 
 
