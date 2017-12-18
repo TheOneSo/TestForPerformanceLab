@@ -1,6 +1,6 @@
-package com.data.PerformanceLabPages;
+package com.autotesting.utilize.PerformanceLabPages;
 
-import com.data.BasePage;
+import com.autotesting.utilize.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

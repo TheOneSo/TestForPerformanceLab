@@ -1,10 +1,13 @@
-package com.data.PerformanceLabPages;
+package com.autotesting.utilize.PerformanceLabPages;
 
-import com.data.BasePage;
-import com.data.Setting.SettingDriver;
+import com.autotesting.utilize.BasePage;
+import com.autotesting.utilize.Setting.SettingDriver;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import java.sql.Time;
 
 public class PFLBHomePage extends BasePage {
 
@@ -37,11 +40,11 @@ public class PFLBHomePage extends BasePage {
         return new PFLBTestingPage();
     }
 
-    public boolean isDisplayedServices(){
+    public boolean isDisplayedServices() throws TimeoutException{
         return Services.isDisplayed();
     }
 
-    public boolean isDisplayedTesting(){
+    public boolean isDisplayedTesting() throws TimeoutException{
         return Testing.isDisplayed();
     }
 }

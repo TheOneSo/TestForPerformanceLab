@@ -1,6 +1,6 @@
-package com.data;
+package com.autotesting.utilize;
 
-import com.data.Setting.SettingDriver;
+import com.autotesting.utilize.Setting.SettingDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {

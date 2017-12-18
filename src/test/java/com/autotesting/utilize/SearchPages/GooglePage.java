@@ -1,8 +1,9 @@
-package com.data.SearchPages;
+package com.autotesting.utilize.SearchPages;
 
-import com.data.BasePage;
-import com.data.PerformanceLabPages.PFLBHomePage;
-import com.data.Setting.SettingDriver;
+import com.autotesting.utilize.BasePage;
+import com.autotesting.utilize.PerformanceLabPages.PFLBHomePage;
+import com.autotesting.utilize.Setting.SettingDriver;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -36,11 +37,7 @@ public class GooglePage extends BasePage {
         return new PFLBHomePage();
     }
 
-    public boolean isDisplayedInput(){
+    public boolean isDisplayedInput() throws TimeoutException{
         return Input.isDisplayed();
-    }
-
-    public boolean isDisplayedPathToFirstResult(){
-        return PathToFirstResult.isDisplayed();
     }
 }

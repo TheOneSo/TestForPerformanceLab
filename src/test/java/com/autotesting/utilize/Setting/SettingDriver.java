@@ -1,4 +1,4 @@
-package com.data.Setting;
+package com.autotesting.utilize.Setting;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

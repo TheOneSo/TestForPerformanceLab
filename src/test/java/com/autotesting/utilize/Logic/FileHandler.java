@@ -1,4 +1,4 @@
-package com.data.Logic;
+package com.autotesting.utilize.Logic;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,8 +1,9 @@
-package com.data.SearchPages;
+package com.autotesting.utilize.SearchPages;
 
-import com.data.BasePage;
-import com.data.PerformanceLabPages.PFLBHomePage;
-import com.data.Setting.SettingDriver;
+import com.autotesting.utilize.BasePage;
+import com.autotesting.utilize.PerformanceLabPages.PFLBHomePage;
+import com.autotesting.utilize.Setting.SettingDriver;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -12,7 +13,7 @@ public class RamblerPage extends BasePage {
         super();
     }
 
-    @FindBy(css = "input[type*=\"text\"]")
+    @FindBy(css = "input.c07")
     private WebElement Input;
 
     @FindBy(css = "div.b-serp-item a[onmouseup*=\"title_1'\"]")
@@ -22,9 +23,10 @@ public class RamblerPage extends BasePage {
     /**
      * Search value in Rambler
      */
-    public void search(String value){
+    public RamblerPage search(String value){
         Input.sendKeys(value + "\n");
         //Input.submit();
+        return this;
     }
 
     /**
@@ -38,11 +40,8 @@ public class RamblerPage extends BasePage {
         return new PFLBHomePage();
     }
 
-    public boolean isDisplayedInput(){
+    public boolean isDisplayedInput() throws TimeoutException{
+        new SettingDriver().setTimeWait(3);
         return Input.isDisplayed();
-    }
-
-    public boolean isDisplayedPathToFirstResult(){
-        return PathToFirstResult.isDisplayed();
     }
 }
