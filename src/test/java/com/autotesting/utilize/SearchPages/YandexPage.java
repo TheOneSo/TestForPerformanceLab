@@ -13,7 +13,7 @@ public class YandexPage extends SearchPage {
         super();
     }
 
-    @FindBy(css = "input#text")
+    @FindBy(id = "text")
     private WebElement Input;
 
     @FindBy(css = "div.main__content a")

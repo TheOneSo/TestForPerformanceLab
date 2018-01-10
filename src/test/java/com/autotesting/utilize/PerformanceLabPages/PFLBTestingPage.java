@@ -1,6 +1,7 @@
 package com.autotesting.utilize.PerformanceLabPages;
 
 import com.autotesting.utilize.BasePage;
+import com.autotesting.utilize.Setting.SettingDriver;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,17 +15,15 @@ public class PFLBTestingPage extends BasePage {
 
     public PFLBTestingPage(){
         super();
+        if(!NamePage.equals(SettingDriver.getChromeDriver().getTitle()))
+            throw new IllegalStateException("This is not the testing page");
     }
 
     /**
      * Click on specific link (AT)
      */
-    public PFLBAutoTestingPage clickAT(){
+    public PFLBAutoTestingPage clickAT() throws TimeoutException{
         AutoTesting.click();
         return new PFLBAutoTestingPage();
-    }
-
-    public boolean isDisplayedAutoTesting() throws TimeoutException{
-        return AutoTesting.isDisplayed();
     }
 }

@@ -21,6 +21,7 @@ public class RamblerPage extends SearchPage {
 
     /**
      * Search value in Rambler
+     * Click 'Enter' emulation
      */
     @Override
     public RamblerPage search(String value){
@@ -41,7 +42,6 @@ public class RamblerPage extends SearchPage {
     }
 
     public boolean isDisplayedInput() throws TimeoutException{
-        new SettingDriver().setTimeWait(3);
         return Input.isDisplayed();
     }
 }

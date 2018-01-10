@@ -6,23 +6,28 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class GooglePage extends SearchPage {
+
+    private static String Url = "https://google.com";
 
     public GooglePage(){
         super();
+        SettingDriver.openUrl(Url);
     }
 
-    @FindBy(css = "input.gsfi")
+    @FindBy(id = "lst-ib")
     private WebElement Input;
 
-    @FindBy(css = "div#ires a")
-    private WebElement PathToFirstResult;
+    @FindBy(css = "div.g h3.r a")
+    private List<WebElement> Results;
 
     /**
      * Search value in Google
      */
     @Override
-    public GooglePage search(String value){
+    public GooglePage search(String value) throws TimeoutException{
         Input.sendKeys(value);
         Input.submit();
         return this;
@@ -31,13 +36,9 @@ public class GooglePage extends SearchPage {
     /**
      * Click on first result in Google
      */
-    public PFLBHomePage clickFirstResult(){
-        PathToFirstResult.click();
+    public PFLBHomePage clickFirstResult(int NumberResult) throws TimeoutException{
+        Results.get(NumberResult - 1).click();
         SettingDriver.switchTabToLast();
         return new PFLBHomePage();
-    }
-
-    public boolean isDisplayedInput() throws TimeoutException{
-        return Input.isDisplayed();
     }
 }

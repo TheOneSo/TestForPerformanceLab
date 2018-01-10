@@ -21,13 +21,15 @@ public class PFLBHomePage extends BasePage {
 
     public PFLBHomePage(){
         super();
+        if(!NamePage.equals(SettingDriver.getChromeDriver().getTitle()))
+            throw new IllegalStateException("This is not the PerformanceLab page");
     }
 
     /**
      * Navigate to Services in dropdown menu
      * With using Actions
      */
-    public PFLBHomePage moveToServicesInDropdownMenu(){
+    public PFLBHomePage moveToServicesInDropdownMenu() throws TimeoutException{
         new Actions(SettingDriver.getChromeDriver()).moveToElement(Services).build().perform();
         return this;
     }
@@ -38,13 +40,5 @@ public class PFLBHomePage extends BasePage {
     public PFLBTestingPage clickTesting(){
         Testing.click();
         return new PFLBTestingPage();
-    }
-
-    public boolean isDisplayedServices() throws TimeoutException{
-        return Services.isDisplayed();
-    }
-
-    public boolean isDisplayedTesting() throws TimeoutException{
-        return Testing.isDisplayed();
     }
 }
