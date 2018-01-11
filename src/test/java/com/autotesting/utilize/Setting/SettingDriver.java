@@ -1,8 +1,10 @@
 package com.autotesting.utilize.Setting;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public final class SettingDriver {
 
     private static WebDriver driver;
-    private WebDriverWait Wait;
+    private static WebDriverWait Wait;
 
     /**
      * Create or return ChromeDriver
@@ -55,8 +57,9 @@ public final class SettingDriver {
     /**
      * Set Time wait in second
      */
-    public void setTimeWait(long secondTime){
+    public static void setTimeWait(long secondTime, WebElement element){
         Wait = new WebDriverWait(getChromeDriver(), secondTime);
+        Wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     /**

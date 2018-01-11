@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GooglePage extends SearchPage {
 
-    private static String Url = "https://google.com";
+    private final String Url = "https://google.com";
 
     public GooglePage(){
         super();
@@ -20,7 +20,7 @@ public class GooglePage extends SearchPage {
     @FindBy(id = "lst-ib")
     private WebElement Input;
 
-    @FindBy(css = "div.g h3.r a")
+    @FindBy(css = "#search h3 a123")
     private List<WebElement> Results;
 
     /**
@@ -28,6 +28,7 @@ public class GooglePage extends SearchPage {
      */
     @Override
     public GooglePage search(String value) throws TimeoutException{
+        SettingDriver.setTimeWait(5, Input);
         Input.sendKeys(value);
         Input.submit();
         return this;
@@ -36,7 +37,8 @@ public class GooglePage extends SearchPage {
     /**
      * Click on first result in Google
      */
-    public PFLBHomePage clickFirstResult(int NumberResult) throws TimeoutException{
+    public PFLBHomePage clickResult(int NumberResult) throws TimeoutException{
+        SettingDriver.setTimeWait(5, Results.get(0));
         Results.get(NumberResult - 1).click();
         SettingDriver.switchTabToLast();
         return new PFLBHomePage();

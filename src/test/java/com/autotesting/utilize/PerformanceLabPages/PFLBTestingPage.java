@@ -23,6 +23,7 @@ public class PFLBTestingPage extends BasePage {
      * Click on specific link (AT)
      */
     public PFLBAutoTestingPage clickAT() throws TimeoutException{
+        SettingDriver.setTimeWait(5, AutoTesting);
         AutoTesting.click();
         return new PFLBAutoTestingPage();
     }

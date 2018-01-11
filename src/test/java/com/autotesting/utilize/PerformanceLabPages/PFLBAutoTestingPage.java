@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class PFLBAutoTestingPage extends BasePage {
 
-    @FindBy(css = "div.entry-main")
+    @FindBy(id = "post-124")
     private WebElement ElementText;
 
     public String NamePage = "Автоматизация тестирования | Перфоманс Лаб";
@@ -23,6 +23,7 @@ public class PFLBAutoTestingPage extends BasePage {
      * Get text on the page and return
      */
     public String getText() throws TimeoutException{
+        SettingDriver.setTimeWait(5, ElementText);
         return ElementText.getText();
     }
 }
