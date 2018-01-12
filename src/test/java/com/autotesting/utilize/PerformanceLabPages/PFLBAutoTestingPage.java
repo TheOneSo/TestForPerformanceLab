@@ -9,13 +9,13 @@ import org.openqa.selenium.support.FindBy;
 public class PFLBAutoTestingPage extends BasePage {
 
     @FindBy(id = "post-124")
-    private WebElement ElementText;
+    private WebElement elementText;
 
-    public String NamePage = "Автоматизация тестирования | Перфоманс Лаб";
+    public String namePage = "Автоматизация тестирования | Перфоманс Лаб";
 
     public PFLBAutoTestingPage(){
         super();
-        if(!NamePage.equals(SettingDriver.getChromeDriver().getTitle()))
+        if(!namePage.equals(SettingDriver.getChromeDriver().getTitle()))
             throw new IllegalStateException("This is not the autotesting page");
     }
 
@@ -23,7 +23,7 @@ public class PFLBAutoTestingPage extends BasePage {
      * Get text on the page and return
      */
     public String getText() throws TimeoutException{
-        SettingDriver.setTimeWait(5, ElementText);
-        return ElementText.getText();
+        SettingDriver.setTimeWait(5, elementText);
+        return elementText.getText();
     }
 }

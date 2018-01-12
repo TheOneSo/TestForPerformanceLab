@@ -1,5 +1,6 @@
 package com.autotesting.utilize.Setting;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -57,9 +58,13 @@ public final class SettingDriver {
     /**
      * Set Time wait in second
      */
-    public static void setTimeWait(long secondTime, WebElement element){
+    public static void setTimeWait(long secondTime, WebElement element) throws TimeoutException{
         Wait = new WebDriverWait(getChromeDriver(), secondTime);
-        Wait.until(ExpectedConditions.visibilityOf(element));
+        try {
+            Wait.until(ExpectedConditions.visibilityOf(element));
+        } catch (TimeoutException e){
+            throw new TimeoutException(e.getMessage());
+        }
     }
 
     /**

@@ -9,13 +9,13 @@ import org.openqa.selenium.support.FindBy;
 public class PFLBTestingPage extends BasePage {
 
     @FindBy(css = "div.col-md-4 a[href*=\"avtomatizacija\"]")
-    private WebElement AutoTesting;
+    private WebElement autoTesting;
 
-    public String NamePage = "Тестирование программного обеспечения - Перфоманс Лаб";
+    public String namePage = "Тестирование программного обеспечения - Перфоманс Лаб";
 
     public PFLBTestingPage(){
         super();
-        if(!NamePage.equals(SettingDriver.getChromeDriver().getTitle()))
+        if(!namePage.equals(SettingDriver.getChromeDriver().getTitle()))
             throw new IllegalStateException("This is not the testing page");
     }
 
@@ -23,8 +23,8 @@ public class PFLBTestingPage extends BasePage {
      * Click on specific link (AT)
      */
     public PFLBAutoTestingPage clickAT() throws TimeoutException{
-        SettingDriver.setTimeWait(5, AutoTesting);
-        AutoTesting.click();
+        SettingDriver.setTimeWait(5, autoTesting);
+        autoTesting.click();
         return new PFLBAutoTestingPage();
     }
 }

@@ -6,12 +6,15 @@ import com.autotesting.utilize.PerformanceLabPages.PFLBHomePage;
 import com.autotesting.utilize.PerformanceLabPages.PFLBTestingPage;
 import com.autotesting.utilize.SearchPages.GooglePage;
 import com.autotesting.utilize.SearchPages.RamblerPage;
+import com.autotesting.utilize.SearchPages.SearchPage;
 import com.autotesting.utilize.SearchPages.YandexPage;
 import com.autotesting.utilize.Setting.SettingDriver;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 
 public class FirstTestsPFLBThroughSearchPages {
@@ -29,53 +32,51 @@ public class FirstTestsPFLBThroughSearchPages {
     }
 
     @Test
-    public void testPFLBThroughGoogle(){
-        try {
-            GooglePage pages = new GooglePage();
-            pages.search("performance lab");
-            PFLBHomePage home = pages.clickResult(1);
-            home.moveToServicesInDropdownMenu();
-            PFLBTestingPage testingpage = home.clickTesting();
-            PFLBAutoTestingPage autotesting = testingpage.clickAT();
-            String text = autotesting.getText();
-            new FileHandler().saveFile("/users/oneso/", "google", text);
-            SettingDriver.closeAllTabsExceptFirst();
+    public void testThroughGoogle(){
+        try{
+            process(new GooglePage());
         } catch (TimeoutException e){
-            System.out.println("test PFLBT through Google - failed");
+            System.out.println(e.getMessage());
+        } catch (NoSuchElementException e){
+            System.out.println(e.getMessage());
         }
     }
 
     @Test
-    public void testPFLBThroughYandex(){
-        try {
-            YandexPage page = new YandexPage();
-            page.search("performance lab");
-            PFLBHomePage home = page.clickResult(1);
-            home.moveToServicesInDropdownMenu();
-            PFLBTestingPage testingpage = home.clickTesting();
-            PFLBAutoTestingPage autotesting = testingpage.clickAT();
-            String text = autotesting.getText();
-            new FileHandler().saveFile("/users/oneso/", "yandex", text);
-            SettingDriver.closeAllTabsExceptFirst();
+    public void testThroughYandex(){
+        try{
+            process(new YandexPage());
         } catch (TimeoutException e){
-            System.out.println("test PFLB through Yandex - failed");
+            System.out.println(e.getMessage());
+        } catch (NoSuchElementException e){
+            System.out.println(e.getMessage());
         }
     }
 
     @Test
-    public void testPFLBThroughRambler(){
+    public void testThroughRambler(){
+        try{
+            process(new RamblerPage());
+        } catch (TimeoutException e){
+            System.out.println(e.getMessage());
+        } catch (NoSuchElementException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void process(SearchPage page) throws TimeoutException, NoSuchElementException{
         try {
-            RamblerPage page = new RamblerPage();
-            page.search("performance lab");
-            PFLBHomePage home = page.clickResult(1);
+            PFLBHomePage home = page.search("performance lab").clickResult(1);
             home.moveToServicesInDropdownMenu();
             PFLBTestingPage testingpage = home.clickTesting();
             PFLBAutoTestingPage autotesting = testingpage.clickAT();
             String text = autotesting.getText();
-            new FileHandler().saveFile("/users/oneso/", "rambler", text);
+            new FileHandler().saveFile("/users/oneso/", page.name, text);
             SettingDriver.closeAllTabsExceptFirst();
+        } catch (NoSuchElementException e){
+            throw new NoSuchElementException(String.format("Error in %s page \n %s", page.name, e.getMessage()), e);
         } catch (TimeoutException e){
-            System.out.println("test PFLB through Rambler - failed");
+            throw new TimeoutException(String.format("Error in %s page \n %s", page.name, e.getMessage()), e);
         }
     }
 }
