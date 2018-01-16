@@ -13,7 +13,8 @@ public class PFLBHomePage extends BasePage {
     @FindBy(id = "menu-item-317")
     private WebElement services;
 
-    @FindBy(css = "div.container > li.menu-item-957 > a")
+    //#menu-item-957 > a:contains('Тестирование')
+    @FindBy(css = ".container > li.menu-item-957 > a")
     private WebElement testing;
 
     public PFLBHomePage(){
