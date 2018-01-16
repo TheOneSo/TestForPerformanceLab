@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-import java.util.Optional;
 
 public class GooglePage extends SearchPage {
 
@@ -42,15 +41,11 @@ public class GooglePage extends SearchPage {
      */
     @Override
     public PFLBHomePage clickResult(int numberResult) throws TimeoutException, NoSuchElementException{
-        Optional<WebElement> temp = Optional.of(results.get(0));
-        if(temp.isPresent()) {
+            if(numberResult < 0 || numberResult > results.size())
+                throw new IndexOutOfBoundsException("Index out");
             SettingDriver.setTimeWait(5, results.get(0));
             results.get(numberResult - 1).click();
             SettingDriver.switchTabToLast();
             return new PFLBHomePage();
-        }
-        else {
-            throw new NoSuchElementException("Element not found");
-        }
     }
 }

@@ -30,7 +30,7 @@ public class YandexPage extends SearchPage {
      * Search value in Yandex
      */
     @Override
-    public YandexPage search(String value) throws TimeoutException{
+    public YandexPage search(String value) throws TimeoutException, NoSuchElementException{
         SettingDriver.setTimeWait(5, input);
         input.sendKeys(value);
         input.submit();

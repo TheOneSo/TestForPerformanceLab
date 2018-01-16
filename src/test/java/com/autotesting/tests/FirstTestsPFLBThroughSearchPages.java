@@ -74,9 +74,35 @@ public class FirstTestsPFLBThroughSearchPages {
             new FileHandler().saveFile("/users/oneso/", page.name, text);
             SettingDriver.closeAllTabsExceptFirst();
         } catch (NoSuchElementException e){
-            throw new NoSuchElementException(String.format("Error in %s page \n %s", page.name, e.getMessage()), e);
+            throw new NoSuchElementException(String.format("Error in %s \n Line err: \n %s",
+                    page.name, e.getStackTrace()[1], e.getMessage()), e);
         } catch (TimeoutException e){
-            throw new TimeoutException(String.format("Error in %s page \n %s", page.name, e.getMessage()), e);
+            throw new TimeoutException(String.format("Error in %s \n Line err: %s \n %s",
+                    page.name, e.getStackTrace()[1], e.getMessage()), e);
         }
     }
+
+
+    /*
+    * Второй вариант
+    *
+    *
+    private void processVar2(SearchPage page) throws TimeoutException, NoSuchElementException{
+        try {
+            BasePage pflb = page.search("performance lab").clickResult(1);
+            ((PFLBHomePage)pflb).moveToServicesInDropdownMenu();
+            pflb = ((PFLBHomePage)pflb).clickTesting();
+            pflb = ((PFLBTestingPage)pflb).clickAT();
+            String text = ((PFLBAutoTestingPage)pflb).getText();
+            new FileHandler().saveFile("/users/oneso/", page.name, text);
+            SettingDriver.closeAllTabsExceptFirst();
+        } catch (NoSuchElementException e){
+            throw new NoSuchElementException(String.format("Error in %s \n Line err: %s \n %s",
+                    page.name, e.getStackTrace()[1], e.getMessage()), e);
+        } catch (TimeoutException e){
+            throw new TimeoutException(String.format("Error in %s \n Line err: %s \n %s",
+                    page.name, e.getStackTrace()[1], e.getMessage()), e);
+        }
+    }
+    */
 }

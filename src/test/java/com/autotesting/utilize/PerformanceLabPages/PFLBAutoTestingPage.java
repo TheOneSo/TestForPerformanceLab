@@ -11,10 +11,8 @@ public class PFLBAutoTestingPage extends BasePage {
     @FindBy(id = "post-124")
     private WebElement elementText;
 
-    public String namePage = "Автоматизация тестирования | Перфоманс Лаб";
-
     public PFLBAutoTestingPage(){
-        super();
+        this.namePage = "Автоматизация тестирования | Перфоманс Лаб";
         if(!namePage.equals(SettingDriver.getChromeDriver().getTitle()))
             throw new IllegalStateException("This is not the autotesting page");
     }

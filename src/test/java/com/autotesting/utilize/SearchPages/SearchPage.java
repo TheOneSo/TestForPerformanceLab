@@ -14,7 +14,7 @@ public abstract class SearchPage extends BasePage {
         super();
     }
 
-    public abstract SearchPage search(String value) throws TimeoutException;
+    public abstract SearchPage search(String value) throws TimeoutException, NoSuchElementException;
 
     public abstract PFLBHomePage clickResult(int numberResult) throws TimeoutException, NoSuchElementException;
 }

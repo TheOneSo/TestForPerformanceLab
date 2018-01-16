@@ -12,7 +12,7 @@ import java.util.List;
 
 public class RamblerPage extends SearchPage {
 
-    public final String url = "https://rambler.ru";
+    public final String url = "https://www.rambler.ru";
 
     public RamblerPage(){
         this.name = "Rambler";
@@ -32,7 +32,7 @@ public class RamblerPage extends SearchPage {
      * Click 'Enter' emulation
      */
     @Override
-    public RamblerPage search(String value) throws TimeoutException{
+    public RamblerPage search(String value) throws TimeoutException, NoSuchElementException{
         SettingDriver.setTimeWait(5, input);
         input.sendKeys(value + "\n");
         //Input.submit();
@@ -44,9 +44,9 @@ public class RamblerPage extends SearchPage {
      * Click on first result in Rambler
      */
     public PFLBHomePage clickResult(int numberResult) throws TimeoutException, NoSuchElementException{
+        SettingDriver.switchTabToLast();
         if(numberResult < 0 || numberResult > results.size())
             throw new IndexOutOfBoundsException("Index out");
-        SettingDriver.switchTabToLast();
         SettingDriver.setTimeWait(5, results.get(0));
         results.get(numberResult - 1).click();
         SettingDriver.switchTabToLast();
